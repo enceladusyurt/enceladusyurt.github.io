@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruotong (Fiona) Yu</title>
+<meta name="description" content="Ruotong (Fiona) Yu — CS master's student at the University of Washington (GIX). Machine learning, recommender systems, wearable sensing and HCI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbfaf7; --surface:#ffffff; --text:#1d1d1f; --muted:#5f6368; --line:#e7e4dd;
+  --accent:#4b2e83; --accent-soft:#efeaf8; --gold:#b7a57a; --chip:#f3f1ec;
+  --shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.05);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121216; --surface:#1b1b21; --text:#ececf1; --muted:#a3a3ad; --line:#2c2c35;
+    --accent:#b9a3ec; --accent-soft:#2a2340; --gold:#cbb98d; --chip:#24242c;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121216; --surface:#1b1b21; --text:#ececf1; --muted:#a3a3ad; --line:#2c2c35;
+  --accent:#b9a3ec; --accent-soft:#2a2340; --gold:#cbb98d; --chip:#24242c;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;transition:background .2s,color .2s}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header.nav .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{font-weight:700;color:var(--text);white-space:nowrap}
+.brand:hover{text-decoration:none}
+nav.links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+nav.links::-webkit-scrollbar{display:none}
+nav.links a{color:var(--muted);padding:6px 10px;border-radius:8px;font-size:14px;font-weight:500;white-space:nowrap}
+nav.links a:hover{text-decoration:none;color:var(--text);background:var(--chip)}
+nav.links a.active{color:var(--accent);background:var(--accent-soft)}
+.icon-btn{border:1px solid var(--line);background:var(--surface);color:var(--text);width:36px;height:36px;border-radius:10px;cursor:pointer;display:grid;place-items:center;flex:none}
+.icon-btn:hover{border-color:var(--accent)}
+
+/* hero */
+.hero{padding:72px 0 40px;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.avatar{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--gold));display:grid;place-items:center;color:#fff;font:700 40px/1 "Source Serif 4",serif;box-shadow:var(--shadow)}
+h1{font:700 clamp(32px,5vw,44px)/1.15 "Source Serif 4",Georgia,serif;margin:0 0 6px;letter-spacing:-.01em}
+.tagline{color:var(--muted);margin:0 0 16px;font-size:17px}
+.typed{color:var(--accent);font-weight:600;border-right:2px solid var(--accent);padding-right:2px;animation:blink 1s step-end infinite}
+@keyframes blink{50%{border-color:transparent}}
+.contact{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:14px;font-weight:500;cursor:pointer;font-family:inherit}
+.btn:hover{text-decoration:none;border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{color:#fff;filter:brightness(1.08)}
+:root[data-theme="dark"] .btn.primary{color:#15121f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .btn.primary{color:#15121f}}
+.btn svg{width:16px;height:16px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:8px 0 24px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow)}
+.stat b{display:block;font:700 26px/1.1 "Source Serif 4",serif;color:var(--accent)}
+.stat span{font-size:13px;color:var(--muted)}
+
+/* sections */
+section{padding:40px 0;border-top:1px solid var(--line)}
+h2{font:700 28px/1.2 "Source Serif 4",Georgia,serif;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 24px}
+.about p{margin:0 0 12px;max-width:72ch}
+.interests{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tag{font-size:13px;padding:4px 10px;border-radius:999px;background:var(--chip);color:var(--muted);border:1px solid transparent}
+
+/* timeline */
+.timeline{position:relative;margin-left:8px;padding-left:24px;border-left:2px solid var(--line)}
+.tl-item{position:relative;margin-bottom:18px}
+.tl-item::before{content:"";position:absolute;left:-32px;top:20px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:3px solid var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;box-shadow:var(--shadow)}
+.card-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.card h3{margin:0;font-size:17px}
+.card .role{color:var(--accent);font-weight:600;font-size:15px}
+.card .meta{color:var(--muted);font-size:14px;text-align:right;white-space:nowrap}
+.card .meta small{display:block}
+.course{margin-top:10px;font-size:14px;color:var(--muted)}
+
+/* experience */
+.exp{cursor:pointer;transition:border-color .15s}
+.exp:hover{border-color:color-mix(in srgb,var(--accent) 40%,var(--line))}
+.exp .summary{margin:10px 0 0;color:var(--muted);font-size:15px}
+.exp .toggle{margin-top:12px;font-size:14px;color:var(--accent);font-weight:600;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.exp .toggle svg{transition:transform .2s}
+.exp.open .toggle svg{transform:rotate(180deg)}
+.details{display:grid;grid-template-rows:0fr;transition:grid-template-rows .25s ease}
+.exp.open .details{grid-template-rows:1fr}
+.details>div{overflow:hidden}
+.details ul{margin:14px 0 0;padding-left:0;list-style:none}
+.details li{position:relative;padding-left:18px;margin-bottom:10px;font-size:15px}
+.details li::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.details li strong{color:var(--text)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.chips .tag{font-size:12px}
+.expand-all{margin-bottom:16px}
+
+/* publications */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.filter{border:1px solid var(--line);background:var(--surface);color:var(--muted);padding:6px 12px;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit}
+.filter:hover{color:var(--text)}
+.filter.active{background:var(--accent);border-color:var(--accent);color:#fff}
+:root[data-theme="dark"] .filter.active{color:#15121f}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .filter.active{color:#15121f}}
+.pub{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;margin-bottom:14px}
+.venue{font-weight:700;font-size:13px;text-align:center;padding:8px 6px;border-radius:10px;background:var(--accent-soft);color:var(--accent);line-height:1.3}
+.venue small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.pub h3{margin:0 0 4px;font-size:16px;line-height:1.4}
+.pub .authors{font-size:14px;color:var(--muted);margin:0}
+.pub .authors .me{color:var(--text);font-weight:600;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
+.badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:color-mix(in srgb,var(--gold) 25%,transparent);color:var(--text);margin-left:6px;vertical-align:2px}
+.pub-actions{margin-top:8px;display:flex;gap:12px;font-size:13px}
+.pub-actions button,.pub-actions a{background:none;border:0;padding:0;color:var(--accent);cursor:pointer;font:inherit;font-weight:500}
+.bib{display:none;margin-top:10px;background:var(--chip);border-radius:10px;padding:12px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;word-break:break-word;color:var(--text)}
+.pub.show-bib .bib{display:block}
+.hidden{display:none!important}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.skills h3{margin:0 0 10px;font-size:15px}
+.skills .tag{background:var(--chip);color:var(--text)}
+
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;pointer-events:none;transition:.2s}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.reveal{opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion: reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.typed{animation:none}}
+
+@media (max-width:680px){
+  .wrap{padding:0 16px}
+  .hero{grid-template-columns:1fr;padding-top:40px;gap:20px}
+  .avatar{width:88px;height:88px;font-size:30px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .card .meta{text-align:left}
+  .pub{grid-template-columns:1fr;gap:8px}
+  .venue{justify-self:start;padding:4px 10px}
+  .venue small{display:inline;margin-left:4px}
+  .brand{display:none}
+  nav.links{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Ruotong (Fiona) Yu</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+      <a href="#skills">Skills</a>
+    </nav>
+    <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
+    </button>
+  </div>
+</header>
+
+<main class="wrap" id="top">
+  <!-- HERO -->
+  <div class="hero" id="about">
+    <div class="avatar" aria-hidden="true">RY</div>
+    <div>
+      <h1>Ruotong (Fiona) Yu</h1>
+      <p class="tagline">CS Master's student at the University of Washington · building <span class="typed" id="typed">recommender systems</span></p>
+      <div class="contact">
+        <a class="btn primary" href="https://www.linkedin.com/in/ruotong-yu-5142b0295" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="mailto:fififiona311@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          fififiona311@gmail.com
+        </a>
+        <button class="btn" id="copyEmail" title="Copy email address">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          Copy
+        </button>
+        <span class="btn" style="cursor:default">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Seattle, WA
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats reveal">
+    <div class="stat"><b data-count="4">4</b><span>Publications</span></div>
+    <div class="stat"><b data-count="2">2</b><span>First-author papers</span></div>
+    <div class="stat"><b data-count="5">5</b><span>Production launches at TikTok</span></div>
+    <div class="stat"><b data-count="3">3</b><span>Industry &amp; research roles</span></div>
+  </div>
+
+  <div class="about reveal" style="padding-bottom:40px">
+    <p>I'm a Computer Science master's student in the Global Innovation Exchange (GIX) program at the University of Washington, after earning my B.E. in Electronic Engineering at Tsinghua University. My work sits where machine learning meets people: large-scale recommendation systems, LLM agents, and ubiquitous sensing on wearables.</p>
+    <p>Most recently I was a Machine Learning Engineer Intern at TikTok, where all five of my launch requests shipped to production. Before that I built real-time biofeedback systems and studied earable-based sleep sensing, work that led to first-author papers at <strong>CHI&nbsp;2026</strong> and <strong>NeurIPS&nbsp;2024</strong>.</p>
+    <div class="interests">
+      <span class="tag">Recommender Systems</span><span class="tag">LLM Agents</span><span class="tag">Human-Computer Interaction</span><span class="tag">Wearable &amp; Ubiquitous Computing</span><span class="tag">Biofeedback</span><span class="tag">Time-Series ML</span>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <p class="sub">Dual-degree master's across Seattle and Beijing, on a foundation in electronic engineering.</p>
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="card">
+        <div class="card-head">
+          <div><h3>University of Washington</h3><div class="role">M.S., Computer Science · Global Innovation Exchange</div></div>
+          <div class="meta">Sep 2025 – Present<small>Seattle, WA</small></div>
+        </div>
+      </div></div>
+      <div class="tl-item reveal"><div class="card">
+        <div class="card-head">
+          <div><h3>Tsinghua University</h3><div class="role">M.S., Computer Science · Global Innovation Exchange</div></div>
+          <div class="meta">Sep 2024 – Jul 2025<small>Beijing, China</small></div>
+        </div>
+      </div></div>
+      <div class="tl-item reveal"><div class="card">
+        <div class="card-head">
+          <div><h3>Tsinghua University</h3><div class="role">B.E., Electronic Engineering · Department of Electronic Engineering</div></div>
+          <div class="meta">Sep 2020 – Jul 2024<small>Beijing, China</small></div>
+        </div>
+        <div class="course"><strong>Relevant coursework:</strong> Data and Algorithms, Digital Logic and Processors, Electronic Circuits and Systems, Discrete Mathematics, Probability and Stochastic Processes, Complex Analysis</div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+    <p class="sub">Click a card to see the details.</p>
+    <button class="btn expand-all" id="expandAll">Expand all</button>
+
+    <div class="timeline">
+      <div class="tl-item reveal"><div class="card exp" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-head">
+          <div><h3>TikTok</h3><div class="role">Machine Learning Engineer Intern</div></div>
+          <div class="meta">Jun 2026 – Sep 2026<small>Beijing, China</small></div>
+        </div>
+        <p class="summary">Recommendation ranking, negative-feedback modeling and an agentic tuning framework. Independently delivered 5 launch requests, all shipped to production.</p>
+        <div class="details"><div><ul>
+          <li><strong>Dislike model iteration.</strong> Added a pointwise skip objective as auxiliary training on top of the existing pairwise Dislike objective for the user negative-feedback model, improving SD and negative-feedback metrics. Deployed to production.</li>
+          <li><strong>Ranking fusion optimization.</strong> Redesigned the Dislike score in both the fine-ranking and blending stages, replacing the fractional formulation with a sigmoid-based transform for better controllability, and introduced a user-level Dislike coefficient that suppresses more strongly for users with higher Dislike propensity. Both iterations improved negative-feedback metrics and launched.</li>
+          <li><strong>Recommendation system agent.</strong> Designed and built an agentic recommendation optimization framework on my own: an Intent Agent based on the ACE framework that uses supervised LLM-as-a-Judge to infer unified user intent from long-term profiles and recent behavior, plus a Multi-Objective Tuning Agent that generates personalized recommendation parameters conditioned on that intent. A Dislike strategy produced by the agent shipped to production.</li>
+          <li><strong>Multi-queue ranking optimization.</strong> Simplified and standardized the multi-queue PK ranking pipeline by unifying ranking logic and PK mechanisms across content genres, with gains in LT, HLT and SD. Deployed to production.</li>
+          <li><strong>Recommendation strategy optimization.</strong> Removed the short-story queue from the blending pipeline to cut exposure to low-quality content, improving negative-feedback metrics. Deployed to production.</li>
+        </ul>
+        <div class="chips"><span class="tag">Ranking</span><span class="tag">Multi-objective optimization</span><span class="tag">LLM-as-a-Judge</span><span class="tag">Agents</span><span class="tag">A/B testing</span></div>
+        </div></div>
+        <button class="toggle" tabindex="-1">Show details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div></div>
+
+      <div class="tl-item reveal"><div class="card exp" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-head">
+          <div><h3>OZ Intelligence</h3><div class="role">Software Engineer Intern</div></div>
+          <div class="meta">Jun 2025 – Dec 2025<small>Beijing, China</small></div>
+        </div>
+        <p class="summary">Real-time physiological monitoring and an adaptive AI biofeedback agent, validated in a 48-participant study and published at CHI 2026.</p>
+        <div class="details"><div><ul>
+          <li>Built a real-time physiological monitoring system as a WeChat mini-program in JavaScript, streaming BLE data at 25&nbsp;Hz and computing HR, HRV and respiration rate with under 500&nbsp;ms display latency.</li>
+          <li>Developed a hybrid client–server architecture with a Flask REST API and WebSockets for bidirectional communication, with frontend–backend arbitration logic to keep metrics consistent across compute sources.</li>
+          <li>Implemented an adaptive breathing-guidance algorithm that adjusts the respiration cycle from real-time HRV feedback. In a 48-participant user study it improved HRV by 26.8&nbsp;ms and extended high-HRV duration by 76.6% over baseline.</li>
+          <li>Designed a state-aware, proactive AI agent for real-time biofeedback that combines personalized HRV baselines, trend-aware decision logic and LLM-guided strategy selection to drive adaptive breathing interventions in a closed loop.</li>
+          <li>Published this work as first author at <strong>ACM CHI 2026</strong>.</li>
+        </ul>
+        <div class="chips"><span class="tag">BLE</span><span class="tag">Flask</span><span class="tag">WebSocket</span><span class="tag">Signal processing</span><span class="tag">LLM agents</span><span class="tag">User study</span></div>
+        </div></div>
+        <button class="toggle" tabindex="-1">Show details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div></div>
+
+      <div class="tl-item reveal"><div class="card exp" tabindex="0" role="button" aria-expanded="false">
+        <div class="card-head">
+          <div><h3>Pervasive HCI Lab, Tsinghua University</h3><div class="role">Research Assistant</div></div>
+          <div class="meta">Jun 2023 – May 2024<small>Beijing, China</small></div>
+        </div>
+        <p class="summary">Multimodal earable sensing for sleep event detection and wearer identification, published as co-first author at NeurIPS 2024.</p>
+        <div class="details"><div><ul>
+          <li>Built a multimodal data pipeline for earable-based sleep event detection, including clock-drift correction and cross-device synchronization of audio and IMU streams.</li>
+          <li>Designed a cross-user evaluation framework using efficient inter-channel audio and motion features that fit wearable-level compute constraints.</li>
+          <li>Benchmarked ML models reaching 99% accuracy in wearer identification and over 70% accuracy in multi-user sleep event detection.</li>
+          <li>Built a Python feature pipeline extracting temporal, spectral and inter-channel audio features from multimodal sensor data.</li>
+          <li>Published as co-first author at <strong>NeurIPS 2024</strong> (Datasets &amp; Benchmarks).</li>
+        </ul>
+        <div class="chips"><span class="tag">Earables</span><span class="tag">Audio + IMU</span><span class="tag">Feature engineering</span><span class="tag">Benchmarking</span></div>
+        </div></div>
+        <button class="toggle" tabindex="-1">Show details <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg></button>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications">
+    <h2>Publications</h2>
+    <p class="sub">* denotes equal contribution.</p>
+    <div class="filters" role="group" aria-label="Filter publications">
+      <button class="filter active" data-filter="all">All <span class="count"></span></button>
+      <button class="filter" data-filter="first">First author</button>
+      <button class="filter" data-filter="2026">2026</button>
+      <button class="filter" data-filter="2025">2025</button>
+      <button class="filter" data-filter="2024">2024</button>
+    </div>
+
+    <div id="pubList">
+      <div class="pub card reveal" data-year="2026" data-first="1">
+        <div class="venue">CHI '26<small>ACM CHI</small></div>
+        <div>
+          <h3>Enabling Adaptive Cardio-Respiratory Biofeedback Training on Ubiquitous Hand-Worn Devices <span class="badge">First author</span></h3>
+          <p class="authors"><span class="me">Ruotong Yu</span>, Xintong Wu, Lily Sheng, Zihao Dong, Yuntao Wang, Yuanchun Shi</p>
+          <div class="pub-actions"><button data-bib>BibTeX</button><a href="https://scholar.google.com/scholar?q=Enabling+Adaptive+Cardio-Respiratory+Biofeedback+Training+on+Ubiquitous+Hand-Worn+Devices" target="_blank" rel="noopener">Find paper ↗</a></div>
+          <pre class="bib">@inproceedings{yu2026enabling,
+  title     = {Enabling Adaptive Cardio-Respiratory Biofeedback Training on Ubiquitous Hand-Worn Devices},
+  author    = {Yu, Ruotong and Wu, Xintong and Sheng, Lily and Dong, Zihao and Wang, Yuntao and Shi, Yuanchun},
+  booktitle = {Proceedings of the 2026 CHI Conference on Human Factors in Computing Systems},
+  series    = {CHI '26},
+  year      = {2026}
+}</pre>
+        </div>
+      </div>
+
+      <div class="pub card reveal" data-year="2024" data-first="1">
+        <div class="venue">NeurIPS '24<small>Datasets &amp; Benchmarks</small></div>
+        <div>
+          <h3>DreamCatcher: A Wearer-aware Multi-modal Sleep Event Dataset Based on Earables in Non-restrictive Environments <span class="badge">Co-first author</span></h3>
+          <p class="authors">Zeyu Wang*, Xiyuxing Zhang*, <span class="me">Ruotong Yu</span>*, et al.</p>
+          <div class="pub-actions"><button data-bib>BibTeX</button><a href="https://scholar.google.com/scholar?q=DreamCatcher+A+Wearer-aware+Multi-modal+Sleep+Event+Dataset+Based+on+Earables" target="_blank" rel="noopener">Find paper ↗</a></div>
+          <pre class="bib">@inproceedings{wang2024dreamcatcher,
+  title     = {DreamCatcher: A Wearer-aware Multi-modal Sleep Event Dataset Based on Earables in Non-restrictive Environments},
+  author    = {Wang, Zeyu and Zhang, Xiyuxing and Yu, Ruotong and others},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS) Datasets and Benchmarks Track},
+  year      = {2024}
+}</pre>
+        </div>
+      </div>
+
+      <div class="pub card reveal" data-year="2026" data-first="0">
+        <div class="venue">CHI EA '26<small>Extended Abstracts</small></div>
+        <div>
+          <h3>Control at Your Fingertips: How Close Are We to Effective Ring-Based Interaction?</h3>
+          <p class="authors">Lily Sheng, Xingjian Tian, <span class="me">Ruotong Yu</span>, Xiyuxing Zhang, Yuntao Wang, Yuanchun Shi</p>
+          <div class="pub-actions"><button data-bib>BibTeX</button><a href="https://scholar.google.com/scholar?q=Control+at+Your+Fingertips+How+Close+Are+We+to+Effective+Ring-Based+Interaction" target="_blank" rel="noopener">Find paper ↗</a></div>
+          <pre class="bib">@inproceedings{sheng2026control,
+  title     = {Control at Your Fingertips: How Close Are We to Effective Ring-Based Interaction?},
+  author    = {Sheng, Lily and Tian, Xingjian and Yu, Ruotong and Zhang, Xiyuxing and Wang, Yuntao and Shi, Yuanchun},
+  booktitle = {Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems},
+  series    = {CHI EA '26},
+  year      = {2026}
+}</pre>
+        </div>
+      </div>
+
+      <div class="pub card reveal" data-year="2025" data-first="0">
+        <div class="venue">IMWUT '25<small>ACM IMWUT</small></div>
+        <div>
+          <h3>Computing with Smart Rings: A Systematic Literature Review</h3>
+          <p class="authors">Zeyu Wang, <span class="me">Ruotong Yu</span>, Xiangyang Wang, Jiexin Ding, Jiankai Tang, Jun Fang, Zhe He, Zhuojun Li, Tobias Röddiger, Weiye Xu, Xiyuxing Zhang, Huan-ang Gao, Nan Gao, Chun Yu, Yuanchun Shi, Yuntao Wang</p>
+          <div class="pub-actions"><button data-bib>BibTeX</button><a href="https://scholar.google.com/scholar?q=Computing+with+Smart+Rings+A+Systematic+Literature+Review" target="_blank" rel="noopener">Find paper ↗</a></div>
+          <pre class="bib">@article{wang2025computing,
+  title   = {Computing with Smart Rings: A Systematic Literature Review},
+  author  = {Wang, Zeyu and Yu, Ruotong and Wang, Xiangyang and Ding, Jiexin and Tang, Jiankai and Fang, Jun and He, Zhe and Li, Zhuojun and R{\"o}ddiger, Tobias and Xu, Weiye and Zhang, Xiyuxing and Gao, Huan-ang and Gao, Nan and Yu, Chun and Shi, Yuanchun and Wang, Yuntao},
+  journal = {Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT)},
+  year    = {2025}
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="sub">Tools and languages I work with.</p>
+    <div class="skills">
+      <div class="card reveal"><h3>Languages</h3><div class="chips"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">JavaScript</span><span class="tag">Bash / Shell</span><span class="tag">MATLAB</span><span class="tag">Verilog</span></div></div>
+      <div class="card reveal"><h3>Machine Learning</h3><div class="chips"><span class="tag">PyTorch</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">SciPy</span><span class="tag">Computer Vision</span><span class="tag">Time-Series Analysis</span><span class="tag">A/B Testing</span></div></div>
+      <div class="card reveal"><h3>MLOps &amp; Monitoring</h3><div class="chips"><span class="tag">MLflow</span><span class="tag">TensorBoard</span><span class="tag">Weights &amp; Biases</span><span class="tag">ONNX</span><span class="tag">Kubeflow</span><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Git</span></div></div>
+      <div class="card reveal"><h3>Web &amp; Backend</h3><div class="chips"><span class="tag">Flask</span><span class="tag">FastAPI</span><span class="tag">Node.js</span><span class="tag">React</span><span class="tag">HTML / CSS</span><span class="tag">REST APIs</span><span class="tag">MySQL</span><span class="tag">MongoDB</span><span class="tag">Redis</span></div></div>
+      <div class="card reveal"><h3>Embedded &amp; Hardware</h3><div class="chips"><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">KiCad (PCB design)</span><span class="tag">Fusion 360 (CAD)</span><span class="tag">BLE</span></div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="year"></span> Ruotong (Fiona) Yu · <a href="https://www.linkedin.com/in/ruotong-yu-5142b0295" target="_blank" rel="noopener">LinkedIn</a> · <a href="mailto:fififiona311@gmail.com">Email</a></div>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  var moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  function isDark(){ var t = root.getAttribute('data-theme'); return t ? t === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; }
+  function paint(){ document.getElementById('themeIcon').innerHTML = isDark() ? sun : moon; }
+  try { var saved = localStorage.getItem('theme'); if (saved) root.setAttribute('data-theme', saved); } catch(e){}
+  paint();
+  document.getElementById('themeBtn').addEventListener('click', function(){
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch(e){}
+    paint();
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // typing tagline
+  var words = ['recommender systems','LLM agents','wearable sensing','human-centered AI'];
+  var el = document.getElementById('typed'), wi = 0, ci = words[0].length, del = true;
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setTimeout(function tick(){
+      var w = words[wi];
+      if (del) { ci--; if (ci === 0) { del = false; wi = (wi + 1) % words.length; } }
+      else { ci++; if (ci === words[wi].length) { del = true; el.textContent = words[wi]; return setTimeout(tick, 1800); } }
+      el.textContent = words[wi].slice(0, ci) || '​';
+      setTimeout(tick, del ? 35 : 70);
+    }, 2200);
+  }
+
+  // toast + copy email
+  var toast = document.getElementById('toast'), tt;
+  function say(msg){ toast.textContent = msg; toast.classList.add('show'); clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove('show'); }, 1600); }
+  function copy(text, msg){
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(function(){ say(msg); }, function(){ say('Copy failed'); });
+    else say('Copy not supported');
+  }
+  document.getElementById('copyEmail').addEventListener('click', function(){ copy('fififiona311@gmail.com', 'Email copied'); });
+
+  // experience expand/collapse
+  var exps = Array.prototype.slice.call(document.querySelectorAll('.exp'));
+  function setOpen(card, open){
+    card.classList.toggle('open', open);
+    card.setAttribute('aria-expanded', open);
+    card.querySelector('.toggle').firstChild.textContent = open ? 'Hide details ' : 'Show details ';
+  }
+  exps.forEach(function(card){
+    card.addEventListener('click', function(e){
+      if (e.target.closest('a')) return;
+      if (window.getSelection && String(window.getSelection()).length) return;
+      setOpen(card, !card.classList.contains('open')); syncAll();
+    });
+    card.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpen(card, !card.classList.contains('open')); syncAll(); }
+    });
+  });
+  var allBtn = document.getElementById('expandAll');
+  function syncAll(){ allBtn.textContent = exps.every(function(c){ return c.classList.contains('open'); }) ? 'Collapse all' : 'Expand all'; }
+  allBtn.addEventListener('click', function(){
+    var open = allBtn.textContent === 'Expand all';
+    exps.forEach(function(c){ setOpen(c, open); }); syncAll();
+  });
+  setOpen(exps[0], true); syncAll();
+
+  // publication filters + bibtex
+  var pubs = Array.prototype.slice.call(document.querySelectorAll('.pub'));
+  document.querySelector('.filter[data-filter="all"] .count').textContent = '(' + pubs.length + ')';
+  document.querySelectorAll('.filter').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      pubs.forEach(function(p){
+        var show = f === 'all' || (f === 'first' ? p.dataset.first === '1' : p.dataset.year === f);
+        p.classList.toggle('hidden', !show);
+        if (show) p.classList.add('in');
+      });
+    });
+  });
+  document.querySelectorAll('[data-bib]').forEach(function(b){
+    b.addEventListener('click', function(){
+      var pub = b.closest('.pub');
+      var showing = pub.classList.toggle('show-bib');
+      b.textContent = showing ? 'Hide BibTeX' : 'BibTeX';
+      if (showing) copy(pub.querySelector('.bib').textContent, 'BibTeX copied');
+    });
+  });
+
+  // reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(function(r){ io.observe(r); });
+  } else reveals.forEach(function(r){ r.classList.add('in'); });
+
+  // scroll spy
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.links a'));
+  var targets = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){
+    var y = window.scrollY + 100, idx = 0;
+    targets.forEach(function(t, i){ if (t && t.offsetTop <= y) idx = i; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) idx = targets.length - 1;
+    links.forEach(function(a, i){ a.classList.toggle('active', i === idx); });
+  }
+  addEventListener('scroll', spy, { passive: true }); spy();
+})();
+</script>
+</body>
+</html>
